@@ -19,4 +19,10 @@ COPY target/stock-quote-1.0-SNAPSHOT.war /config/apps/StockQuote.war
 COPY key.jks /config/resources/security/key.jks
 # COPY validationKeystore.jks /config/resources/security/validationKeystore.jks
 # COPY ltpa.keys /output/resources/security/ltpa.keys
+
+# Changes recommended from Microclimate troubleshooting
+USER root
+RUN chmod g+w /config/apps
+USER 1001
+
 RUN installUtility install --acceptLicense defaultServer
